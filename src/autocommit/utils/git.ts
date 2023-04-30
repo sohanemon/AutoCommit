@@ -7,66 +7,73 @@
 import { execa } from 'execa';
 import * as vscode from 'vscode';
 
-const cwd = vscode.workspace?.workspaceFolders ? vscode.workspace?.workspaceFolders[0].uri.path : undefined;
+const cwd = vscode.workspace?.workspaceFolders
+  ? vscode.workspace?.workspaceFolders[0].uri.path
+  : undefined;
+
+// stage all changes added
+export const stageAllChanges = async () => {
+  await execa('git', ['add', '.'], { cwd: cwd });
+};
 
 export const assertGitRepo = async () => {
-    const { stdout } = await execa('git', ['rev-parse', '--is-inside-work-tree'], { reject: false, cwd: cwd });
+  const { stdout } = await execa(
+    'git',
+    ['rev-parse', '--is-inside-work-tree'],
+    { reject: false, cwd: cwd }
+  );
 
-    if (stdout !== 'true') {
-        return false;
-    }
+  if (stdout !== 'true') {
+    return false;
+  }
 
-    return true;
+  return true;
 };
 
 const excludeFromDiff = (path: string) => `:(exclude)${path}`;
 
 const filesToExclude = [
-    'package-lock.json',
-    'pnpm-lock.yaml',
+  'package-lock.json',
+  'pnpm-lock.yaml',
 
-    // yarn.lock, Cargo.lock, Gemfile.lock, Pipfile.lock, etc.
-    '*.lock',
+  // yarn.lock, Cargo.lock, Gemfile.lock, Pipfile.lock, etc.
+  '*.lock',
 ].map(excludeFromDiff);
 
 export const getStagedDiff = async (excludeFiles?: string[]) => {
-    const diffCached = ['diff', '--cached'];
-    const { stdout: files } = await execa(
-        'git',
-        [
-            ...diffCached,
-            '--name-only',
-            ...filesToExclude,
-            ...(
-                excludeFiles
-                    ? excludeFiles.map(excludeFromDiff)
-                    : []
-            ),
-        ],
-        {
-            cwd: cwd,
-        }
-    );
-
-    if (!files) {
-        return;
+  const diffCached = ['diff', '--cached'];
+  const { stdout: files } = await execa(
+    'git',
+    [
+      ...diffCached,
+      '--name-only',
+      ...filesToExclude,
+      ...(excludeFiles ? excludeFiles.map(excludeFromDiff) : []),
+    ],
+    {
+      cwd: cwd,
     }
+  );
 
-    const { stdout: diff } = await execa(
-        'git',
-        [
-            ...diffCached,
-            ...filesToExclude,
-        ],
-        {
-            cwd: cwd,
-        }
-    );
+  if (!files) {
+    return;
+  }
 
-    return {
-        files: files.split('\n'),
-        diff,
-    };
+  const { stdout: diff } = await execa(
+    'git',
+    [...diffCached, ...filesToExclude],
+    {
+      cwd: cwd,
+    }
+  );
+
+  return {
+    files: files.split('\n'),
+    diff,
+  };
 };
 
-export const getDetectedMessage = (files: string[]) => `Detected ${files.length.toLocaleString()} staged file${files.length > 1 ? 's' : ''}`;
+export const getDetectedMessage = (files: string[]) =>
+  `Detected ${files.length.toLocaleString()} staged file${
+    files.length > 1 ? 's' : ''
+  }`;

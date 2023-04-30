@@ -6,7 +6,7 @@
 
 import * as vscode from 'vscode';
 
-import { assertGitRepo, getStagedDiff } from './utils/git';
+import { assertGitRepo, getStagedDiff, stageAllChanges } from './utils/git';
 import { generateCommitMessage } from './utils/openai';
 import { runTaskWithTimeout } from './utils/timer';
 
@@ -24,8 +24,17 @@ async function generateAICommitMessage(apiKey: string, delimeter?: string) {
     const staged = await getStagedDiff();
 
     if (!staged) {
-      vscode.window.showErrorMessage('No staged changes found.');
-      return;
+      const result = await vscode.window.showQuickPick(['Yes', 'No'], {
+        title: `Stage all changes now?`,
+      });
+
+      if (result !== 'Yes') {
+        vscode.window.showErrorMessage('No staged changes found.');
+        return;
+      } else {
+        await stageAllChanges();
+        return;
+      }
     }
 
     const commitMessage = await vscode.window.withProgress(
@@ -61,14 +70,6 @@ async function generateAICommitMessage(apiKey: string, delimeter?: string) {
       );
       return;
     }
-
-    // const result = await vscode.window.showQuickPick(['Yes', 'No'], {
-    //   title: `Use this commit message?: ${commitMessage}`,
-    // });
-
-    // if (result !== 'Yes') {
-    //   return;
-    // }
 
     return commitMessage;
   } catch (error: any) {
