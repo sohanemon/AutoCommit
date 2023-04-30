@@ -2,7 +2,7 @@
   "name": "auto-commit",
   "displayName": "Auto Commit with GPT",
   "description": "Generate commit messages using ChatGPT",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "homepage": "https://github.com/sohanemon/AutoCommit#readme",
   "bugs": "https://github.com/sohanemon/AutoCommit/issues",
   "repository": {
