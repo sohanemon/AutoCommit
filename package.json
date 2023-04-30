@@ -3,17 +3,17 @@
   "displayName": "GPT Commit",
   "description": "VS Code extension which helps to generate AI commit messages using ChatGPT",
   "version": "1.0.4",
-  "homepage": "https://github.com/dmytrobaida/GPTCommitVSCode#readme",
-  "bugs": "https://github.com/dmytrobaida/GPTCommitVSCode/issues",
+  "homepage": "https://github.com/sohanemon/GPTCommitVSCode#readme",
+  "bugs": "https://github.com/sohanemon/GPTCommitVSCode/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmytrobaida/GPTCommitVSCode"
+    "url": "https://github.com/sohanemon/GPTCommitVSCode"
   },
   "license": "MIT",
   "engines": {
     "vscode": "^1.76.0"
   },
-  "publisher": "DmytroBaida",
+  "publisher": "Sohanemon",
   "categories": [
     "Other",
     "SCM Providers"
