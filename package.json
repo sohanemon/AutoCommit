@@ -32,7 +32,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "gptcommit.generateAICommit",
+        "command": "autocommit.generateAICommit",
         "title": "Generate AI commit",
         "icon": {
           "dark": "assets/icons/commit-dark.svg",
@@ -43,7 +43,7 @@
     "menus": {
       "scm/title": [
         {
-          "command": "gptcommit.generateAICommit",
+          "command": "autocommit.generateAICommit",
           "when": "scmProvider == git",
           "group": "navigation"
         }
@@ -52,12 +52,12 @@
     "configuration": {
       "title": "GPT Commit",
       "properties": {
-        "gptcommit.openAI.apiKey": {
+        "autocommit.openAI.apiKey": {
           "type": "string",
           "default": "",
           "description": "Needed for generating AI commit messages"
         },
-        "gptcommit.appearance.delimeter": {
+        "autocommit.appearance.delimeter": {
           "type": "string",
           "default": "*",
           "description": "Delimeter between commit lines"

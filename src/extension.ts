@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import generateAICommitMessage from './gptcommit';
+import generateAICommitMessage from './autocommit';
 
 async function getGitApi() {
   const gitEntension = vscode.extensions.getExtension('vscode.git');
@@ -19,13 +19,13 @@ async function getGitApi() {
 }
 
 function getOpenAiApiKey() {
-  const configuration = vscode.workspace.getConfiguration('gptcommit');
+  const configuration = vscode.workspace.getConfiguration('autocommit');
   const apiKey = configuration.get<string>('openAI.apiKey');
   return apiKey;
 }
 
 async function setOpenAiApiKey(apiKey: string) {
-  const configuration = vscode.workspace.getConfiguration('gptcommit');
+  const configuration = vscode.workspace.getConfiguration('autocommit');
   await configuration.update(
     'openAI.apiKey',
     apiKey,
@@ -34,7 +34,7 @@ async function setOpenAiApiKey(apiKey: string) {
 }
 
 function getDelimeter() {
-  const configuration = vscode.workspace.getConfiguration('gptcommit');
+  const configuration = vscode.workspace.getConfiguration('autocommit');
   const delimeter = configuration.get<string>('appearance.delimeter');
   if (delimeter?.trim() === '') {
     return;
@@ -83,7 +83,7 @@ async function generateAICommitCommand() {
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
-    'gptcommit.generateAICommit',
+    'autocommit.generateAICommit',
     generateAICommitCommand
   );
   context.subscriptions.push(disposable);
