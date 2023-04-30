@@ -1,4 +1,4 @@
-# GPT Commit
+# Auto Commit
 
 VS Code extension which helps to generate AI commit messages using ChatGPT.
 
@@ -44,6 +44,4 @@ Added Open AI API Key input prompt
 
 Updated commit formatting. Added new setting
 
-## License
-
-Released under [MIT](/LICENSE) by [@dmytrobaida](https://github.com/dmytrobaida).
+Forked from [@dmytrobaida](https://github.com/dmytrobaida).

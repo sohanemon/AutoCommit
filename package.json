@@ -2,7 +2,7 @@
   "name": "auto-commit",
   "displayName": "Auto Commit with GPT",
   "description": "VS Code extension which helps to generate AI commit messages using ChatGPT",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "https://github.com/sohanemon/AutoCommit#readme",
   "bugs": "https://github.com/sohanemon/AutoCommit/issues",
   "repository": {
@@ -13,7 +13,7 @@
   "engines": {
     "vscode": "^1.76.0"
   },
-  "publisher": "Sohanemon",
+  "publisher": "sohanemon",
   "categories": [
     "Other",
     "SCM Providers"
@@ -50,7 +50,7 @@
       ]
     },
     "configuration": {
-      "title": "GPT Commit",
+      "title": "Auto Commit",
       "properties": {
         "autocommit.openAI.apiKey": {
           "type": "string",
