@@ -1,5 +1,5 @@
 {
-  "name": "auto-commit",
+  "name": "auto-commit-gpt",
   "displayName": "Auto Commit with GPT",
   "description": "Generate commit messages using ChatGPT",
   "version": "2.1.0",
