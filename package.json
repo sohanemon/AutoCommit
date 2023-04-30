@@ -1,8 +1,8 @@
 {
   "name": "auto-commit",
   "displayName": "Auto Commit with GPT",
-  "description": "VS Code extension which helps to generate AI commit messages using ChatGPT",
-  "version": "2.0.1",
+  "description": "Generate commit messages using ChatGPT",
+  "version": "2.0.2",
   "homepage": "https://github.com/sohanemon/AutoCommit#readme",
   "bugs": "https://github.com/sohanemon/AutoCommit/issues",
   "repository": {
