@@ -24,9 +24,7 @@ async function generateAICommitMessage(apiKey: string, delimeter?: string) {
     const staged = await getStagedDiff();
 
     if (!staged) {
-      vscode.window.showErrorMessage(
-        'No staged changes found. Make sure to stage your changes with `git add`.'
-      );
+      vscode.window.showErrorMessage('No staged changes found.');
       return;
     }
 
@@ -64,13 +62,13 @@ async function generateAICommitMessage(apiKey: string, delimeter?: string) {
       return;
     }
 
-    const result = await vscode.window.showQuickPick(['Yes', 'No'], {
-      title: `Use this commit message?: ${commitMessage}`,
-    });
+    // const result = await vscode.window.showQuickPick(['Yes', 'No'], {
+    //   title: `Use this commit message?: ${commitMessage}`,
+    // });
 
-    if (result !== 'Yes') {
-      return;
-    }
+    // if (result !== 'Yes') {
+    //   return;
+    // }
 
     return commitMessage;
   } catch (error: any) {
