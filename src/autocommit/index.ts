@@ -74,7 +74,6 @@ async function generateAICommitMessage(apiKey: string,apiUrl: string, delimeter?
 
     return commitMessage;
   } catch (error: any) {
-    vscode.window.showErrorMessage(error);
     const errorMessage = error?.response?.data?.error?.message;
 
     if (errorMessage) {
