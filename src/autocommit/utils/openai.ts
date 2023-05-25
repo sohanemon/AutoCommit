@@ -11,6 +11,7 @@ import { trimNewLines } from './text';
 
 export const generateCommitMessage = async (
   apiKey: string,
+  apiUrl: string, 
   diff: string,
   delimeter?: string
 ) => {
@@ -19,6 +20,7 @@ export const generateCommitMessage = async (
   const openAI = new OpenAIApi(
     new Configuration({
       apiKey: apiKey,
+      basePath: `${apiUrl}/v1`.replace(/\/+$/, ""),
     })
   );
 
