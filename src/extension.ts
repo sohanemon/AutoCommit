@@ -33,6 +33,21 @@ async function setOpenAiApiKey(apiKey: string) {
   );
 }
 
+function getOpenAiApiUrl() {
+  const configuration = vscode.workspace.getConfiguration('autocommit');
+  const apiUrl = configuration.get<string>('openAI.apiUrl');
+  return apiUrl;
+}
+
+async function setOpenAiApiUrl(apiUrl: string) {
+  const configuration = vscode.workspace.getConfiguration('autocommit');
+  await configuration.update(
+    'openAI.apiUrl',
+    apiUrl,
+    vscode.ConfigurationTarget.Global
+  );
+}
+
 function getDelimeter() {
   const configuration = vscode.workspace.getConfiguration('autocommit');
   const delimeter = configuration.get<string>('appearance.delimeter');
@@ -70,9 +85,25 @@ async function generateAICommitCommand() {
 
     await setOpenAiApiKey(apiKey);
   }
+  let apiUrl = getOpenAiApiUrl();
+
+  if (!apiUrl || !apiUrl.startsWith('https://')) {
+    apiUrl = await vscode.window.showInputBox({
+      title: 'Please enter your OpenAi Url starting with https://',
+    });
+
+    if (!apiUrl || apiUrl.trim() === '') {
+      vscode.window.showErrorMessage(
+        'You should set OpenAi API Url before extension using!'
+      );
+      return;
+    }
+
+    await setOpenAiApiUrl(apiUrl);
+  }
 
   const delimeter = getDelimeter();
-  const commitMessage = await generateAICommitMessage(apiKey, delimeter);
+  const commitMessage = await generateAICommitMessage(apiKey, apiUrl, delimeter);
 
   if (!commitMessage) {
     return;

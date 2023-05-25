@@ -2,7 +2,7 @@
   "name": "auto-commit-gpt",
   "displayName": "Auto Commit with GPT",
   "description": "Generate commit messages using ChatGPT",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "homepage": "https://github.com/sohanemon/AutoCommit#readme",
   "bugs": "https://github.com/sohanemon/AutoCommit/issues",
   "repository": {
@@ -56,6 +56,11 @@
           "type": "string",
           "default": "",
           "description": "Needed for generating AI commit messages"
+        },
+        "autocommit.openAI.apiUrl": {
+          "type": "string",
+          "default": "https://api.openai.com",
+          "description": "Required for generating AI commit messages. Should start with \"https://\""
         },
         "autocommit.appearance.delimeter": {
           "type": "string",
