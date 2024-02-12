@@ -12,7 +12,7 @@ import {
 const initMessagesPrompt: Array<ChatCompletionRequestMessage> = [
   {
     role: ChatCompletionRequestMessageRoleEnum.System,
-    content: `You are to act as the author of a commit message in git. Your mission is to create clean and comprehensive commit messages in the conventional commit convention. I'll send you an output of 'git diff --staged' command, and you convert it into a commit message. Do not preface the commit with anything, use the present tense. Don't add any descriptions to the commit, only commit message. Use english language to answer.`,
+    content: `Imagine you're crafting a commit message for a change in a Git repository. Your task is to create clear and concise commit messages following the conventional commit convention. I'll provide you with the output of the 'git diff --staged' command, and your job is to translate it into a commit message. Avoid prefacing the commit with any additional text and stick to using the present tense. Don't include any descriptions in the commit message, only the message itself. Please respond in English.`,
   },
   {
     role: ChatCompletionRequestMessageRoleEnum.User,

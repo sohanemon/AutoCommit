@@ -58,7 +58,9 @@ async function generateAICommitCommand() {
 
   if (!apiKey) {
     apiKey = await vscode.window.showInputBox({
-      title: 'Please enter your OpenAi API Key',
+      prompt: 'Please enter your OpenAi API Key',
+      title: 'OpenAi API Key',
+      placeHolder: 'OpenAi API Key',
     });
 
     if (!apiKey || apiKey.trim() === '') {
