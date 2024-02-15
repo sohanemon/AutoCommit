@@ -52,7 +52,7 @@ export const generateCommitMessage = async (
   });
 
   const message = data?.choices[0].message;
-  const commitMessage = message?.content.replace(/[^\x00-\x7F]+/g, '');
+  const commitMessage = message?.content?.replace(/[^\x00-\x7F]+/g, '');
 
   if (commitMessage) {
     const alignedCommitMessage = trimNewLines(commitMessage, delimeter);
