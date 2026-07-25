@@ -88,6 +88,6 @@
   },
   "dependencies": {
     "execa": "^7.1.1",
-    "openai": "^3.2.1"
+    "openai": "^6.0.0"
   }
 }
